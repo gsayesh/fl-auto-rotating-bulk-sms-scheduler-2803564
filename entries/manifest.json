@@ -1,0 +1,16 @@
+{
+ "entries": [
+  {
+   "html": "entry-1.html",
+   "width": 1600,
+   "height": 1200,
+   "scale": 2,
+   "detail": "entry-1-detail.html",
+   "detail_width": 1600,
+   "detail_height": 2000,
+   "title": "Zamu – auto-rotating bulk SMS scheduler, 7 pages",
+   "description": "Zamu is an Android bulk SMS scheduler built on your rule: every SMS takes the next template, T1 to T5 then back to T1, and each client gets each template once, evenly spaced. All 7 pages: your attachment's planner grid, search/delete by number, last SMS date, bulk edit/delete, sent report with CSV log, forwarding and auto-reply. Ink-black UI, five template colours like your sheet, Plus Jakarta Sans and JetBrains Mono, Swahili sample SMS. You receive the HTML/CSS/JS source of the working prototype with its tested rotation engine, PNG of every screen, the font list and a README with the CSV format. Unlimited revisions, any change (colour, font, layout, text) delivered within a few hours — rate or comment and I will revise.\n{{LIVE_URL}}\n{{REPO_URL}}",
+   "pdf": false
+  }
+ ]
+}

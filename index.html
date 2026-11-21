@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zamu — Auto-rotating bulk SMS scheduler (Android prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..24,400..700,0..1,0&display=block" rel="stylesheet">
+<link rel="stylesheet" href="app/app.css">
+<style>
+  html, body { height: 100%; }
+  body { margin: 0; background: #E9E7E1; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #15171C; }
+  body.shot { background: transparent; }
+  body.shot .stage { display: block; padding: 0; min-height: 0; }
+  body.shot .side, body.shot .device-bezel { display: none; }
+  body.shot .device { padding: 0; background: none; box-shadow: none; border-radius: 0; }
+  body.shot .device .app { border-radius: 0; }
+  .stage { min-height: 100%; display: flex; align-items: center; justify-content: center; gap: 64px; padding: 40px; box-sizing: border-box; }
+  .device { position: relative; padding: 12px; border-radius: 58px; background: #101114; box-shadow: 0 0 0 1.5px #3a3c42 inset, 0 40px 80px -30px rgba(20,22,28,.45), 0 18px 30px -18px rgba(20,22,28,.35); }
+  .device .app { border-radius: 46px; }
+  .device-bezel { position: absolute; top: 24px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #0b0c0e; box-shadow: 0 0 0 2px #1d1f24; z-index: 30; }
+  .side { width: 360px; }
+  .side .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 30px; letter-spacing: -.035em; }
+  .side h2 { font-size: 15px; font-weight: 600; color: #4D525C; margin: 10px 0 22px; line-height: 1.5; }
+  .side .lnk { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 14px; border-radius: 14px; font-size: 14.5px; font-weight: 700; color: #15171C; text-decoration: none; }
+  .side .lnk:hover { background: rgba(255,255,255,.6); }
+  .side .lnk.on { background: #fff; box-shadow: 0 1px 0 #DDDAD2; }
+  .side .lnk i { font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #8A8F98; width: 54px; }
+  .side .note { font-size: 12.5px; color: #6B7079; line-height: 1.5; margin-top: 20px; border-top: 1px solid #D9D6CD; padding-top: 16px; }
+  .side .row2 { display: flex; gap: 8px; margin-top: 16px; }
+  .side .row2 button { flex: 1; height: 44px; border-radius: 12px; border: 1px solid #CFCBC1; background: #fff; font-weight: 700; font-size: 13.5px; cursor: pointer; }
+  .side .row2 button.dark { background: #15171C; color: #fff; border-color: #15171C; }
+  @media (max-width: 900px) {
+    .stage { padding: 0; display: block; }
+    .side, .device-bezel { display: none; }
+    .device { padding: 0; border-radius: 0; background: none; box-shadow: none; }
+    .device .app { border-radius: 0; width: 100vw; height: 100vh; height: 100dvh; }
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="device"><div class="device-bezel"></div><div class="app" id="app"></div></div>
+  <aside class="side">
+    <div class="brand"><svg width="44" height="44" viewBox="0 0 36 36"><rect width="36" height="36" rx="11" fill="#15171C"/><g fill="none" stroke-width="5.2" stroke-linecap="round"><path d="M20.97 5.34 A13 13 0 0 1 29.42 11.48" stroke="#6C5CE7" transform="rotate(-72 18 18)"/><path d="M20.97 5.34 A13 13 0 0 1 29.42 11.48" stroke="#F2B233"/><path d="M20.97 5.34 A13 13 0 0 1 29.42 11.48" stroke="#23A26D" transform="rotate(72 18 18)"/><path d="M20.97 5.34 A13 13 0 0 1 29.42 11.48" stroke="#EF6F3C" transform="rotate(144 18 18)"/><path d="M20.97 5.34 A13 13 0 0 1 29.42 11.48" stroke="#3B82E0" transform="rotate(216 18 18)"/></g><circle cx="18" cy="18" r="3.2" fill="#fff"/></svg>zamu</div>
+    <h2>Auto-rotating bulk SMS scheduler for Android — every SMS takes the next template in turn, T1 → T5 and back to T1.</h2>
+    <a class="lnk" data-route="home" href="#/home"><i>PAGE_1</i>Home &amp; dashboard</a>
+    <a class="lnk" data-route="clients" href="#/clients"><i>PAGE_2</i>Clients &amp; imports</a>
+    <a class="lnk" data-route="templates" href="#/templates"><i>PAGE_3</i>SMS templates</a>
+    <a class="lnk" data-route="schedule" href="#/schedule"><i>PAGE_4</i>Schedule</a>
+    <a class="lnk" data-route="planner" href="#/planner"><i>PAGE_5</i>SMS scheduled planner</a>
+    <a class="lnk" data-route="report" href="#/report"><i>PAGE_6</i>Sent report</a>
+    <a class="lnk" data-route="auto" href="#/auto"><i>PAGE_7</i>Forwarding &amp; auto-reply</a>
+    <div class="row2"><button class="dark" data-route="test">Run rotation test</button><button onclick="Zamu.reset()">Reset demo</button></div>
+    <p class="note">Interactive prototype with the real rotation engine and 3,169 demo clients. Press <b>Start sending</b> to watch the carousel move one template per SMS, import your own CSV / XLSX, search a number in the Planner, or download the sent log. Sending is simulated in this prototype. State is saved, so a reload continues from the same SMS — the same resume rule the app uses after a crash or restart.</p>
+  </aside>
+</div>
+<script>if (new URLSearchParams(location.search).get('shot')) document.body.classList.add('shot');</script>
+<script src="app/engine.js"></script>
+<script src="app/data.js"></script>
+<script src="app/app.js"></script>
+</body>
+</html>
